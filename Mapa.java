@@ -1,9 +1,9 @@
 public class Mapa {
 	private int largo;
 	private int ancho;
-	private int[][] numeroDeCAsilla;
+	private int[][] numeroDeCasilla;
 	private double probDeCaja;
-	private boolean casillaExplorasa;
+	private boolean casillaExplorada;
 	
 	public Mapa(){ }
 	

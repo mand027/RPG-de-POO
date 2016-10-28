@@ -1,6 +1,6 @@
 public class Heroe
 {
-	private int vida, defensa, danio, vel, sigilo;
+	private int vida, defensa, danio, vel;
 	private int intel, nivel, exp;
 	
 	public Heroe() { }
@@ -13,8 +13,6 @@ public class Heroe
 	public void setDanio(int danio){ this.danio = danio; }
 	public int getVel(int vel){ return vel; }
 	public void setVel(int vel){ this.vel = vel; }
-	public int getSigilo(){ return sigilo; }
-	public void setSigilo(int sigilo){ this.sigilo = sigilo; }
 	public int getIntel(){ return intel; }
 	public void setIntel(int intel){ this.intel = intel; }
 	public int getNivel(){ return nivel; }
