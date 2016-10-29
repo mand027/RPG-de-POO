@@ -1,4 +1,10 @@
-public class Movimiento
+public interface Movimiento
 {
-	public Movimiento(){ }
+	public void arriba();
+
+	public void abajo();
+
+	public void izquierda();
+	
+	public void derecha();
 }
