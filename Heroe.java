@@ -1,10 +1,10 @@
-public class Heroe
-{
+public class Heroe implements Movimiento
+ {
 	private int vida, defensa, danio, vel;
 	private int intel, nivel, exp;
-	
+
 	public Heroe() { }
-	
+
 	public int getVida(){ return vida; }
 	public void setVida(int vida){ this.vida = vida; }
 	public int getDefensa(){ return defensa; }
@@ -19,11 +19,23 @@ public class Heroe
 	public void setNivel(int nivel){ this.nivel = nivel; }
 	public int getExp(){ return exp; }
 	public void setExp(int exp){ this.exp = exp; }
-	
+
 	public void atacar()
 	{
 
 	}
+	public void atacar(String mensaje){
+		
+	}
+  public void  izquierda(){
+
+  }
+  public void  adelante(){
+  }
+  public void atras(){
+  }
+  public void  derecha(){
+  }
 
 	public void levelup()
 	{

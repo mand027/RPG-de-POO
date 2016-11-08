@@ -1,10 +1,7 @@
 public interface Movimiento
 {
-	public void arriba();
-
-	public void abajo();
-
-	public void izquierda();
-	
+	public void adelante();
+	public void atras();
 	public void derecha();
+	public void izquierda();
 }
