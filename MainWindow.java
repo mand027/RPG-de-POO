@@ -52,6 +52,11 @@ public class MainWindow extends JFrame
 		bottomLeft.add(abajo);
 		JLabel emptyBL5 = new JLabel("");
 		bottomLeft.add(emptyBL5);		
-
+			for(int x=1; x<5; x++){
+		for(int i=0; i<20 ; i ++){
+			JLabel map2 = new JLabel("[_______________]");
+			topRight.add(map2);
+			}
+		}
 	}
 }
