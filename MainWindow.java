@@ -6,6 +6,7 @@ public class MainWindow extends JFrame
 {
 	private JPanel topLeft, topRight, bottomLeft, bottomRight;
 	private JButton atacar, usar, recoger, arriba, abajo, izq, derecha;
+	private JLabel nombre, clase, salud, nivel, experiencia, municion, armaEquipada, inventario, log;
 
 	public MainWindow()
 	{
