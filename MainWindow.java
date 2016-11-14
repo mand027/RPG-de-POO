@@ -29,6 +29,24 @@ public class MainWindow extends JFrame
 		add(bottomLeft);
 		add(bottomRight);
 		
+		nombre = new JLabel(Heroe.getNombre);
+		bottomLeft.add(nombre);
+		clase = new JLabel(Heroe.get"");
+		bottomLeft.add(clase);
+		nivel = new JLabel(Heroe.getNivel);
+		bottomLeft.add(nivel);
+		experiencia = new JLabel(Heroe.getexperiencia);
+		bottomLeft.add(experiencia);
+		salud = new JLabel(Heroe.getSalud);
+		bottomLeft.add(salud);
+		municion = new JLabel("".getMunicion);
+		bottomLeft.add(municion);
+		armaEquipada = new JLabel(Heroe.armaEquipada);
+		bottomLeft.add(armaEquipada);
+		inventario = new JLabel(Inventario);
+		bottomLeft.add(inventario);
+		log= new JLabel(" ");
+		topLeft.add(log);
 		atacar = new JButton("Atacar");
 		usar = new JButton("Usar");
 		recoger = new JButton("Recoger");
