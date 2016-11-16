@@ -1,12 +1,16 @@
 public class Inventario
 {
-	// Cinco slots para armaprincipal, secundaria, 
+	// Cinco slots para armaprincipal, secundaria,
 	// salud, municionprincipal y municionsecundaria.
-	private Item[] items; 
+	private Item[] items;
 
-	public Inventario()
+	public Inventario(ArmaPrincipal armaPrincipal, ArmaSecundaria armaSecundaria, Salud salud, Municion municionPrincipal)
 	{
-		items = new Item[5];	
+		items = new Item[4];
+		items[0] = armaPrincipal;
+		items[1] = armaSecundaria;
+		items[2] = salud;
+		items[3] = municionPrincipal;
 	}
 
 	public Item[] getItems(){ return items; }
@@ -22,7 +26,7 @@ public class Inventario
 		items[index] = null;
 	}
 
-	public void usar()
+	public void usar(int index)
 	{
 
 	}

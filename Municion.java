@@ -1,9 +1,18 @@
 public class Municion extends Item
 {
-	private int tipo;
+	// no se si lo necesitamos si lo ponemos en un array private int tipo;
+	private int numero;
 
-	public Municion(){ }
+	public Municion(int numero)
+	{
+		this.numero = numero;
+	}
 
-	public int getTipo(){ return tipo; }
-	public void setTipo(int tipo){ this.tipo = tipo; }
+	public int getNumero(){ return numero; }
+	public void setNumero(int numero){ this.numero = numero; }
+
+	public void shoot()
+	{
+		numero -= 1;
+	}
 }
