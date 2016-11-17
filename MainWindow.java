@@ -26,14 +26,14 @@ public class MainWindow extends JFrame
 				this.heroe = new Veteran(nombreHeroe, tipoHeroe, 1, 0, 130, 2, 15, 0);
 				break;
 		}
-		inventario = new Inventario(new ArmaPrincipal("Rifle Termico"), new ArmaSecundaria("Cuchillo", 1), new Salud(0), new Municion(50));
-		setTitle("Horizons 1336 - ");
+		inventario = new Inventario(new ArmaPrincipal("Rifle Termico"), new ArmaSecundaria("Cuchillo"), new Salud(0), new Municion(50));
+		setTitle("Horizons 1336");
 		setSize(1280, 720);
 		setLayout(new GridLayout(2, 2));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		init();
 		setVisible(true);
-		run();
+		//run();
 	}
 
 	private void init()
@@ -76,17 +76,19 @@ public class MainWindow extends JFrame
 		bottomRight.add(armaSecundaria);
 		// inventario = new JLabel(Inventario);
 		// bottomLeft.add(inventario);
-		log = new JLabel(" ");
+		log = new JLabel("*HISTORIA* INTRODUCCION");
 		topLeft.add(log);
 
 		// Botones
-		atacar = new JButton("Atacar");
-		usar = new JButton("Usar");
-		recoger = new JButton("Recoger");
-		arriba = new JButton("arriba");
-		abajo = new JButton("abajo");
-		izq  = new JButton("<");
-		derecha = new JButton(">");
+		atacar = new JButton("Entrar");
+		atacar.setActionCommand("E");
+		atacar.addActionListener(new AtacarListener());
+		usar = new JButton("    ");
+		recoger = new JButton("    ");
+		arriba = new JButton("    ");
+		abajo = new JButton("    ");
+		izq  = new JButton("   ");
+		derecha = new JButton("    ");
 		bottomLeft.add(atacar);
 		bottomLeft.add(usar);
 		bottomLeft.add(recoger);
@@ -106,21 +108,40 @@ public class MainWindow extends JFrame
 		bottomLeft.add(emptyBL5);
 
 		//Mapa
-			for(int x=1; x<5; x++){
-		for(int i=0; i<20 ; i ++){
-			JLabel map2 = new JLabel("[_______________]");
-			topRight.add(map2);
+		for(int x=1; x<5; x++){
+			for(int i=0; i<20 ; i ++){
+				JLabel map2 = new JLabel("[_______________]");
+				topRight.add(map2);
 			}
 		}
 
 	}
 
-	private void run()
+	// private void run()
+	// {
+	// 	log.setText("*HISTORIA* INTRODUCCION");
+	// 	log.setText("Nivel 1");
+	//
+	// }
+
+	private class AtacarListener implements ActionListener
 	{
-		log.setText("*HISTORIA* INTRODUCCION");
-		log.setText("Nivel 1");
+		public void actionPerformed(ActionEvent event)
+		{
+			if (event.getActionCommand().equals("E"))
+			{
+				log.setText("Nivel 1");
+				atacar.setText("Atacar");
+				usar.setText("Usar");
+				recoger.setText("Recoger");
+				arriba.setText("arriba");
+				abajo.setText("abajo");
+				izq.setText("<");
+				derecha.setText(">");
+				atacar.setActionCommand("A");
 
+
+			}
+		}
 	}
-
-	// private class AtacarListener implements 
 }
