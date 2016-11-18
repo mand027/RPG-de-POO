@@ -1,7 +1,6 @@
 public class Enemigo
 {
 	private int vida, defensa, danio, nivel;
-	private String nombre;
 
 	public Enemigo(){ }
 
@@ -30,19 +29,12 @@ public class Enemigo
 		this.nivel = nivel;
 		}
 
-	public String getNombre(){
-		return nombre;
-	}
-	public void setNombre(String nombre){
-		this.nombre = nombre;
-	}
-
 	public void atacar(){
 
 	}
 
 	public void xpDada(){
-
+		
 	}
 
 	public void itemTirado(){
