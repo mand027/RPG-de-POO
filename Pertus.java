@@ -4,11 +4,11 @@ public class Pertus extends Enemigo
 		String texto;
 
 		heroe.setVidaTemp(heroe.getVidaTemp() - enemigo.getDanio());
-		texto = "Te ha atacado "+enemigo.getNombre();
+		texto = "Te ha atacado un Pertus";
 
 		if(enemigo.getVida() < 20){
 			enemigo.setVida(0);
-			texto = " El "+enemigo.getNombre()+" ha escapado";
+			texto = " El Pertus ha escapado";
 		}
 		return texto;
 	}
