@@ -78,20 +78,10 @@ public class Heroe implements Movimiento
     public void atacar(String mensaje){
     }
 
-    public void  izquierda(){
-
-    }
-
-    public void  adelante(){
-    }
-
-    public void atras(){
-
-    }
-
-    public void  derecha(){
-    }
-
+   public void horizontal (){
+   }
+   public void vertical(){
+   }
 	 public void levelup(){
 		nivel++;
 	}
