@@ -5,12 +5,12 @@ public class Cartacus extends Enemigo
 
 			if(heroe.getVidaTemp() < heroe.getVidaMax()/4){
 				heroe.setVidaTemp(heroe.getVidaTemp() - (enemigo.getDanio()*2));
-				texto = "Te ha atacado "+enemigo.getNombre()+" con mordida";
+				texto = "Te ha atacado un Caractus con mordida";
 			}
 			else{
 				heroe.setVidaTemp(heroe.getVidaTemp() - enemigo.getDanio());
 			}
-			texto = "Te ha atacado "+enemigo.getNombre();
+			texto = "Te ha atacado un caractus";
 			return texto;
 	}
 }
