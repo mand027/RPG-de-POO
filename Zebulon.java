@@ -5,12 +5,12 @@ public class Zebulon extends Enemigo
 
 		if(heroe.getVidaTemp() > heroe.getVidaMax()/2){
 			heroe.setVidaTemp(heroe.getVidaTemp() - (enemigo.getDanio()+ 5));
-			texto = "Te ha atacado "+enemigo.getNombre()+" con charge";
+			texto = "Te ha atacado un Zebulon con charge";
 		}
 		else{
 			heroe.setVidaTemp(heroe.getVidaTemp() - enemigo.getDanio());
 		}
-		texto = "Te ha atacado "+enemigo.getNombre();
+		texto = "Te ha atacado un Zebulon";
 		return texto;
 	}
 }
