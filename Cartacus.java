@@ -1,5 +1,10 @@
 public class Cartacus extends Enemigo
 {
+	public Cartacus(String nombre, int vida, int defensa, int danio, int nivel)
+	{
+		super(nombre, vida, defensa, danio, nivel);
+	}
+
 	public String Atacar(Enemigo enemigo, Heroe heroe){
 		String texto;
 

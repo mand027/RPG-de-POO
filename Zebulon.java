@@ -1,5 +1,10 @@
 public class Zebulon extends Enemigo
 {
+	public Zebulon(String nombre, int vida, int defensa, int danio, int nivel)
+	{
+		super(nombre, vida, defensa, danio, nivel);
+	}
+
 	public String Atacar(Enemigo enemigo, Heroe heroe){
 		String texto;
 

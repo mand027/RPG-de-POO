@@ -1,5 +1,10 @@
 public class Pertus extends Enemigo
 {
+	public Pertus(String nombre, int vida, int defensa, int danio, int nivel)
+	{
+		super(nombre, vida, defensa, danio, nivel);
+	}
+
 	public String Atacar(Enemigo enemigo, Heroe heroe){
 		String texto;
 

@@ -117,13 +117,11 @@ public class MainWindow extends JFrame
 
 	}
 
-	// private void run()
-	// {
-	// 	log.setText("*HISTORIA* INTRODUCCION");
-	// 	log.setText("Nivel 1");
-	//
-	// }
+	private void createLevel()
+	{
 
+	}
+	
 	private class AtacarListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
@@ -144,4 +142,6 @@ public class MainWindow extends JFrame
 			}
 		}
 	}
+
+
 }

@@ -3,7 +3,7 @@ public class Enemigo
 	private int vida, defensa, danio, nivel;
 	private String nombre;
 
-	public Enemigo(String nombre, int vida, int defensa, int danio int nivel)
+	public Enemigo(String nombre, int vida, int defensa, int danio, int nivel)
 	{
 		this.nombre = nombre;
 		this.vida = vida;

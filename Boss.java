@@ -2,7 +2,13 @@ public class Boss extends Enemigo
 {
 	private int sigilo, intel;
 
-	public Boss(){ }
+	public Boss(String nombre, int vida, int defensa, int danio, int nivel, int sigilo, int intel)
+	{
+		super(nombre, vida, defensa, danio, nivel);
+		this.sigilo = sigilo;
+		this.intel = intel;
+	}
+
 
 	public int getSigilo(){ return sigilo; }
 	public void setSigilo(int sigilo){ this.sigilo = sigilo; }
