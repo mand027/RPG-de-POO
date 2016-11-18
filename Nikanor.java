@@ -10,12 +10,12 @@ public class Nikanor extends Enemigo
 		boolean lanza=true;
 
 		if(lanza == true){
-			heroe.setVidaTemp(heroe.getVidaTemp() - (enemigo.getDanio()*3));
+			heroe.setVidaTemp(heroe.getVidaTemp() + heroe.getDefensa() - (enemigo.getDanio()*3));
 			texto = "Te ha atacado un Nikanor con lanza";
 			lanza = false;
 		}
 		else{
-			heroe.setVidaTemp(heroe.getVidaTemp() - enemigo.getDanio());
+			heroe.setVidaTemp(heroe.getVidaTemp() + heroe.getDefensa() - enemigo.getDanio());
 		}
 		texto = "Te ha atacado con piedras un Nikanor";
 		return texto;

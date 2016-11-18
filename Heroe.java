@@ -2,6 +2,8 @@ public class Heroe implements Movimiento
  {
 	private int vidaMax, vidaTemp, defensa, danio, intel, nivel, exp;
     private String nombre, clase;
+    private int x;
+    private int y;
 
 	public Heroe(String nombre, String clase, int nivel, int exp, int vidaMax, int defensa, int danio, int intel)
     {
@@ -14,6 +16,8 @@ public class Heroe implements Movimiento
         this.defensa = defensa;
         this.danio = danio;
         this.intel = intel;
+        x = 0;
+        y = 0;
     }
 
   	public String getNombre(){ ;
@@ -71,6 +75,22 @@ public class Heroe implements Movimiento
 		this.exp = exp;
 	}
 
+    public int getX(){
+        return x;
+    }
+
+    public void setX(int xl){
+        this.x = x;
+    }
+
+    public int getY(){
+        return y;
+    }
+
+    public void setY(int xl){
+        this.y = y;
+    }
+
     public void atacar(){
 
     }
@@ -78,11 +98,17 @@ public class Heroe implements Movimiento
     public void atacar(String mensaje){
     }
 
-   public void horizontal (){
+   public void horizontal ()
+   {
+
    }
-   public void vertical(){
+
+   public void vertical()
+   {
+
    }
-	 public void levelup(){
+
+   public void levelup(){
 		nivel++;
-	}
+    }
 }

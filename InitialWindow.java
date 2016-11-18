@@ -45,8 +45,15 @@ public class InitialWindow extends JFrame
     {
         public void actionPerformed(ActionEvent event)
         {
-            setVisible(false);
-            new MainWindow(nombreTF.getText(), event.getActionCommand());
+            if (nombreTF.getText().equals(""))
+            {
+                nombreL.setText("Nombre (obligatorio)");
+            }
+            else
+            {
+                setVisible(false);
+                new MainWindow(nombreTF.getText(), event.getActionCommand());
+            }
         }
     }
 }

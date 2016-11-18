@@ -23,7 +23,7 @@ public class Boss extends Enemigo
 			texto = "Te ha atacado el Boss con su ataque supremo";
 		}
 		else{
-			heroe.setVidaTemp(heroe.getVidaTemp() - enemigo.getDanio());
+			heroe.setVidaTemp(heroe.getVidaTemp() + heroe.getDefensa() - enemigo.getDanio());
 		}
 		texto = "Te ha atacado el Boss";
 		return texto;

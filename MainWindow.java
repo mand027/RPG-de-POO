@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Random;
 
 public class MainWindow extends JFrame
 {
@@ -108,37 +109,82 @@ public class MainWindow extends JFrame
 		bottomLeft.add(emptyBL5);
 
 		//Mapa
-		for(int x=1; x<5; x++){
+		limpiarMapa();
+
+	}
+
+	public void limpiarMapa(){
+		for(int x=0; x<=5; x++){
 			for(int i=0; i<20 ; i ++){
-				JLabel map2 = new JLabel("[_______________]");
+				JButton map2 = new JButton("O");
 				topRight.add(map2);
+				if(x==0){
+					if(i==0){
+						JButton posicion = new JButton("X");
+						topRight.add(posicion);
+					}
+				}
 			}
 		}
-
 	}
 
-	private void createLevel()
+	private void runLevel()
 	{
+		Random r = new Random();
+		Enemigo enemigo;
+		atacar.setText("Atacar");
+		usar.setText("Usar");
+		recoger.setText("");
+		arriba.setText("");
+		abajo.setText("");
+		izq.setText("");
+		derecha.setText("");
+		atacar.setActionCommand("A");
+		// if (casilla100){
+		// 	enemigo > boss
+		// }
+		// else lo de abajo
+		switch (r.nextInt(12))
+		{
+			case 0:
+			case 1:
+			case 2:
+				enemigo = new Cartacus("Cartacus", heroe.getNivel()*50, 1, 10, heroe.getNivel());
+				break;
+			case 3:
+			case 4:
+			case 5:
+			case 6:
+				enemigo = new Nikanor("Nikanor", heroe.getNivel()*100, 0, 5, heroe.getNivel());
+				break;
+			case 7:
+				enemigo = new Zebulon("Zebulon", heroe.getNivel()*110, 2, 15, heroe.getNivel());
+				break;
+			case 8:
+			case 9:
+				enemigo = new Quiang("Quiang", heroe.getNivel()*150, 2, 7, heroe.getNivel());
+				break;
+			case 10:
+				enemigo = new Pertus("Pertus", heroe.getNivel()*75, 0, 20, heroe.getNivel());
+				break;
+			case 11:
+				enemigo = new Enemigo("no", 0, 0, 0, 0);
+				break;
+			default:
+				enemigo = new Enemigo("no", 0, 0, 0, 0);
+				break;
+		}
+		log.setText("<html><p>Nivel 1</p><p>Ha aparecido un " + enemigo.getNombre() + "</p></html>");
 
 	}
-	
+
 	private class AtacarListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
 		{
 			if (event.getActionCommand().equals("E"))
 			{
-				log.setText("Nivel 1");
-				atacar.setText("Atacar");
-				usar.setText("Usar");
-				recoger.setText("Recoger");
-				arriba.setText("arriba");
-				abajo.setText("abajo");
-				izq.setText("<");
-				derecha.setText(">");
-				atacar.setActionCommand("A");
-
-
+				runLevel();
 			}
 		}
 	}
