@@ -12,4 +12,15 @@ public class Pertus extends Enemigo
 		}
 		return texto;
 	}
+
+	public String xpDada(Heroe heroe, Enemigo enemigo){
+		String texto = "";
+
+		if(enemigo.getVida() <= 0){
+			heroe.setExp(heroe.getExp() + 40*enemigo.getNivel());
+			int xp = heroe.getExp() + 40*enemigo.getNivel();
+			texto = "Has matado un Pertus! te da "+xp+" puntos de experiencia";
+		}
+		return texto;
+	}
 }
