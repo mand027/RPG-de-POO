@@ -179,7 +179,7 @@ public class MainWindow extends JFrame
 		izq.setActionCommand("none");
 		derecha.setText("");
 		derecha.setActionCommand("none");
-		// if (casilla100){
+		// 	if (casilla100){
 		// 	enemigo > boss
 		// }
 		// else lo de abajo
@@ -302,7 +302,7 @@ public class MainWindow extends JFrame
 			}
 			catch (SaliodelMapaException e)
 			{
-				log.setText("No te puedes salir del mapa");
+				updateLog("No te puedes salir del mapa");
 			}
 		}
 	}
