@@ -1,4 +1,4 @@
-public class Heroe implements Movimiento
+public abstract class Heroe implements Movimiento
  {
 	private int vidaMax, vidaTemp, defensa, danio, intel, nivel, exp;
     private String nombre, clase;
@@ -91,38 +91,33 @@ public class Heroe implements Movimiento
         this.y = y;
     }
 
-    public void atacar(){
+    public abstract String atacar(Enemigo enemigo, Inventario inventario);
 
+    public void horizontal (int x) throws SaliodelMapaException
+    {
+        if ((this.x + x) < 0 || (this.x + x) > 4)
+        {
+            throw new SaliodelMapaException();
+        }
+        else
+        {
+            this.x += x;
+        }
     }
 
-    public void atacar(String mensaje){
+    public void vertical(int y) throws SaliodelMapaException
+    {
+        if ((this.y + y) < 0 || (this.y + y) > 19)
+        {
+            throw new SaliodelMapaException();
+        }
+        else
+        {
+            this.y += y;
+        }
     }
 
-   public void horizontal (int x) throws SaliodelMapaException
-   {
-       if ((this.x + x) < 0 || (this.x + x) > 4)
-       {
-           throw new SaliodelMapaException();
-       }
-       else
-       {
-           this.x += x;
-       }
-   }
-
-   public void vertical(int y) throws SaliodelMapaException
-   {
-       if ((this.y + y) < 0 || (this.y + y) > 19)
-       {
-           throw new SaliodelMapaException();
-       }
-       else
-       {
-           this.y += y;
-       }
-   }
-
-   public void levelup(){
-		nivel++;
+    public void levelup(){
+		      nivel++;
     }
 }

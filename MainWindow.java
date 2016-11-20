@@ -84,6 +84,7 @@ public class MainWindow extends JFrame
 		atacar.setActionCommand("E");
 		atacar.addActionListener(new AtacarListener());
 		usar = new JButton("    ");
+		usar.addActionListener(new PocionListener());
 		arriba = new JButton("    ");
 		arriba.addActionListener(new MoverListener());
 		arriba.setActionCommand("U");
@@ -166,12 +167,17 @@ public class MainWindow extends JFrame
 	{
 		Random r = new Random();
 		atacar.setText("Atacar");
-		usar.setText("Usar");
-		arriba.setText("");
-		abajo.setText("");
-		izq.setText("");
-		derecha.setText("");
 		atacar.setActionCommand("A");
+		usar.setText("Pocion");
+		usar.setActionCommand("P");
+		arriba.setText("");
+		arriba.setActionCommand("none");
+		abajo.setText("");
+		abajo.setActionCommand("none");
+		izq.setText("");
+		izq.setActionCommand("none");
+		derecha.setText("");
+		derecha.setActionCommand("none");
 		// if (casilla100){
 		// 	enemigo > boss
 		// }
@@ -200,12 +206,13 @@ public class MainWindow extends JFrame
 				enemigo = new Pertus("Pertus", heroe.getNivel()*75, 0, 20, heroe.getNivel());
 				break;
 			case 11:
-				enemigo = new Enemigo("no", 0, 0, 0, 0);
+				// enemigo = new Enemigo("no", 0, 0, 0, 0);
 				break;
 			default:
-				enemigo = new Enemigo("no", 0, 0, 0, 0);
+				// enemigo = new Enemigo("no", 0, 0, 0, 0);
 				break;
 		}
+		updateLog("<html><p>Nivel 1</p><p>Ha aparecido un " + enemigo.getNombre() + "</p></html>");
 		// log.setText("<html><p>Nivel 1</p><p>Ha aparecido un " + enemigo.getNombre() + "</p></html>");
 
 	}
@@ -233,6 +240,17 @@ public class MainWindow extends JFrame
 				runLevel();
 			}
 			else
+			{
+				// heroe.atacar("")
+			}
+		}
+	}
+
+	private class PocionListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent event)
+		{
+			if (event.getActionCommand().equals("P"))
 			{
 
 			}

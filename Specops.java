@@ -9,26 +9,26 @@ public class Specops extends Heroe{
 		this.sigilo = sigilo;
     }
 
-	public String Atacar(Enemigo enemigo, Heroe heroe, Inventario inventario ){
+	public String atacar(Enemigo enemigo, Inventario inventario ){
 		Random rn = new Random();
 	    int r = rn.nextInt(10) + 1;
 
 		if( ((Municion)inventario.getItems()[3]).getNumero() > 0){
 			if(r < 4){
-				enemigo.setVida(enemigo.getVida() - ((heroe.getDanio() + ((ArmaPrincipal)inventario.getItems()[0]).getDanio() + heroe.getIntel()/3) * 3));
+				enemigo.setVida(enemigo.getVida() - ((getDanio() + ((ArmaPrincipal)inventario.getItems()[0]).getDanio() + getIntel()/3) * 3));
 			}
 			else{
-				enemigo.setVida(enemigo.getVida() - (heroe.getDanio() + ((ArmaPrincipal)inventario.getItems()[0]).getDanio() + heroe.getIntel()/3));
+				enemigo.setVida(enemigo.getVida() - (getDanio() + ((ArmaPrincipal)inventario.getItems()[0]).getDanio() + getIntel()/3));
 			}
 			((Municion)inventario.getItems()[3]).setNumero(((Municion)inventario.getItems()[3]).getNumero() -1);
 			texto = "has atacado a "+enemigo.getNombre()+" con tu "+inventario.getItems()[0].getNombre()+" usando 1 de municion";
 		}
 		else{
 			if(r < 4){
-				enemigo.setVida(enemigo.getVida() - ((heroe.getDanio() + ((ArmaSecundaria)inventario.getItems()[1]).getDanio() + heroe.getDanio()/3) * 3));
+				enemigo.setVida(enemigo.getVida() - ((getDanio() + ((ArmaSecundaria)inventario.getItems()[1]).getDanio() + getDanio()/3) * 3));
 			}
 			else{
-				enemigo.setVida(enemigo.getVida() - (heroe.getDanio() + ((ArmaSecundaria)inventario.getItems()[1]).getDanio() + heroe.getDanio()/3));
+				enemigo.setVida(enemigo.getVida() - (getDanio() + ((ArmaSecundaria)inventario.getItems()[1]).getDanio() + getDanio()/3));
 			}
 			texto = "has atacado a "+enemigo.getNombre()+" con tu "+inventario.getItems()[1].getNombre();
 		}
