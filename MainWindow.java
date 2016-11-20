@@ -40,7 +40,7 @@ public class MainWindow extends JFrame
 	private void init()
 	{
 		topLeft = new JPanel();
-		topRight = new JPanel();
+		topRight = new JPanel(new GridLayout(20, 5));
 		bottomLeft = new JPanel(new GridLayout(4, 3));
 		bottomRight = new JPanel(new GridLayout(12, 1));
 		add(topLeft);
@@ -114,16 +114,24 @@ public class MainWindow extends JFrame
 	}
 
 	public void limpiarMapa(){
-		for(int x=0; x<=5; x++){
-			for(int i=0; i<20 ; i ++){
-				JButton map2 = new JButton("O");
-				topRight.add(map2);
-				if(x==0){
-					if(i==0){
-						JButton posicion = new JButton("X");
-						topRight.add(posicion);
-					}
+		for(int x=0; x < 5; x++){
+			for(int y=0; y < 20 ; y++){
+				JPanel panel = new JPanel();
+				// JButton casillaMapa = new JButton("");
+				if (x == 0 && y == 0)
+				{
+					// casillaMapa.setText("");
+					panel.setBackground(Color.red);
 				}
+				else
+				{
+					// casillaMapa.setText("");
+					panel.setBackground(Color.green);
+				}
+				panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+				// label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+				// panel.add(casillaMapa);
+				topRight.add(panel);
 			}
 		}
 	}
