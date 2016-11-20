@@ -1,6 +1,6 @@
 public interface Movimiento
 {
-	public void horizontal();
-	public void vertical();
-	
+	public void horizontal(int x) throws SaliodelMapaException;
+	public void vertical(int y) throws SaliodelMapaException;
+
 }

@@ -79,7 +79,7 @@ public class Heroe implements Movimiento
         return x;
     }
 
-    public void setX(int xl){
+    public void setX(int x){
         this.x = x;
     }
 
@@ -87,7 +87,7 @@ public class Heroe implements Movimiento
         return y;
     }
 
-    public void setY(int xl){
+    public void setY(int y){
         this.y = y;
     }
 
@@ -98,14 +98,28 @@ public class Heroe implements Movimiento
     public void atacar(String mensaje){
     }
 
-   public void horizontal ()
+   public void horizontal (int x) throws SaliodelMapaException
    {
-
+       if ((this.x + x) < 0 || (this.x + x) > 4)
+       {
+           throw new SaliodelMapaException();
+       }
+       else
+       {
+           this.x += x;
+       }
    }
 
-   public void vertical()
+   public void vertical(int y) throws SaliodelMapaException
    {
-
+       if ((this.y + y) < 0 || (this.y + y) > 19)
+       {
+           throw new SaliodelMapaException();
+       }
+       else
+       {
+           this.y += y;
+       }
    }
 
    public void levelup(){

@@ -87,9 +87,17 @@ public class MainWindow extends JFrame
 		usar = new JButton("    ");
 		recoger = new JButton("    ");
 		arriba = new JButton("    ");
+		arriba.addActionListener(new MoverListener());
+		arriba.setActionCommand("U");
 		abajo = new JButton("    ");
+		abajo.addActionListener(new MoverListener());
+		abajo.setActionCommand("D");
 		izq  = new JButton("   ");
+		izq.addActionListener(new MoverListener());
+		izq.setActionCommand("L");
 		derecha = new JButton("    ");
+		derecha.addActionListener(new MoverListener());
+		derecha.setActionCommand("R");
 		bottomLeft.add(atacar);
 		JLabel empty = new JLabel("");
 		bottomLeft.add(empty);
@@ -115,10 +123,12 @@ public class MainWindow extends JFrame
 	}
 
 	public void limpiarMapa(){
-		for(int x=0; x < 5; x++){
-			for(int y=0; y < 20 ; y++){
+		topRight.removeAll();
+		log.setText("Nuevo nivel" + heroe.getX() + " , " + heroe.getY());
+		for(int y=0; y < 20; y++){
+			for(int x=0; x < 5 ; x++){
 				JPanel panel = new JPanel();
-				if (x == 0 && y == 0)
+				if (x == heroe.getX() && y == heroe.getY())
 				{
 					panel.setBackground(Color.red);
 				}
@@ -126,7 +136,7 @@ public class MainWindow extends JFrame
 				{
 					panel.setBackground(Color.green);
 				}
-				panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));	  
+				panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 				topRight.add(panel);
 			}
 		}
@@ -189,6 +199,39 @@ public class MainWindow extends JFrame
 			if (event.getActionCommand().equals("E"))
 			{
 				runLevel();
+			}
+		}
+	}
+
+	private class MoverListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent event)
+		{
+			try
+			{
+				switch (event.getActionCommand())
+				{
+					case "U":
+						heroe.vertical(-1);
+						break;
+					case "D":
+						heroe.vertical(1);
+						break;
+					case "L":
+						heroe.horizontal(-1);
+						break;
+					case "R":
+						heroe.horizontal(1);
+						break;
+					default:
+
+						break;
+				}
+				limpiarMapa();
+			}
+			catch (SaliodelMapaException e)
+			{
+				log.setText("No te puedes salir del mapa");
 			}
 		}
 	}
