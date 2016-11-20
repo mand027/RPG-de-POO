@@ -126,7 +126,7 @@ public class MainWindow extends JFrame
 				{
 					panel.setBackground(Color.green);
 				}
-				panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+				panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));	  
 				topRight.add(panel);
 			}
 		}
