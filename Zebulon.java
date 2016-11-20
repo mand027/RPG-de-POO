@@ -5,26 +5,26 @@ public class Zebulon extends Enemigo
 		super(nombre, vida, defensa, danio, nivel);
 	}
 
-	public String Atacar(Enemigo enemigo, Heroe heroe){
+	public String atacar(Heroe heroe){
 		String texto;
 
 		if(heroe.getVidaTemp() > heroe.getVidaMax()/2){
-			heroe.setVidaTemp(heroe.getVidaTemp() + heroe.getDefensa() - (enemigo.getDanio()+ 5));
+			heroe.setVidaTemp(heroe.getVidaTemp() + heroe.getDefensa() - (getDanio()+ 5));
 			texto = "Te ha atacado un Zebulon con charge";
 		}
 		else{
-			heroe.setVidaTemp(heroe.getVidaTemp() + heroe.getDefensa() - enemigo.getDanio());
+			heroe.setVidaTemp(heroe.getVidaTemp() + heroe.getDefensa() - getDanio());
 		}
 		texto = "Te ha atacado un Zebulon";
 		return texto;
 	}
 
-	public String xpDada(Heroe heroe, Enemigo enemigo){
+	public String xpDada(Heroe heroe){
 		String texto = "";
 
-		if(enemigo.getVida() <= 0){
-			heroe.setExp(heroe.getExp() + 20*enemigo.getNivel());
-			int xp = heroe.getExp() + 20*enemigo.getNivel();
+		if(getVida() <= 0){
+			heroe.setExp(heroe.getExp() + 20*getNivel());
+			int xp = heroe.getExp() + 20*getNivel();
 			texto = "Has matado un Zebulon! te da "+xp+" puntos de experiencia";
 		}
 		return texto;

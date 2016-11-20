@@ -5,24 +5,24 @@ public class Pertus extends Enemigo
 		super(nombre, vida, defensa, danio, nivel);
 	}
 
-	public String Atacar(Enemigo enemigo, Heroe heroe){
+	public String atacar(Heroe heroe){
 		String texto;
 
-		heroe.setVidaTemp(heroe.getVidaTemp() + heroe.getDefensa() - enemigo.getDanio());
+		heroe.setVidaTemp(heroe.getVidaTemp() + heroe.getDefensa() - getDanio());
 		texto = "Te ha atacado un Pertus";
 
-		if(enemigo.getVida() < 20){
-			enemigo.setVida(0);
+		if(getVida() < 20){
+			setVida(0);
 		}
 		return texto;
 	}
 
-	public String xpDada(Heroe heroe, Enemigo enemigo){
+	public String xpDada(Heroe heroe){
 		String texto = "";
 
-		if(enemigo.getVida() <= 0){
-			heroe.setExp(heroe.getExp() + 40*enemigo.getNivel());
-			int xp = heroe.getExp() + 40*enemigo.getNivel();
+		if(getVida() <= 0){
+			heroe.setExp(heroe.getExp() + 40*getNivel());
+			int xp = heroe.getExp() + 40*getNivel();
 			texto = "Has escapado el Pertus! te da "+xp+" puntos de experiencia";
 		}
 		return texto;

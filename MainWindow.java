@@ -10,6 +10,7 @@ public class MainWindow extends JFrame
 	private String logNivel;
 	private Heroe heroe;
 	private Enemigo enemigo;
+	private Item itemCaido;
 	private Inventario inventario;
 	private JPanel topLeft, topRight, bottomLeft, bottomRight;
 	private JButton atacar, usar, arriba, abajo, izq, derecha;
@@ -126,7 +127,7 @@ public class MainWindow extends JFrame
 		topRight.removeAll();
 		logNivel = "";
 		int casillaActual = (heroe.getX() + 1 ) + (heroe.getY() * 5);
-		log.setText("Casilla: " + casillaActual);
+		updateLog("Casilla: " + casillaActual);
 		for(int y=0; y < 20; y++){
 			for(int x=0; x < 5 ; x++){
 				JPanel panel = new JPanel();
@@ -212,14 +213,14 @@ public class MainWindow extends JFrame
 				// enemigo = new Enemigo("no", 0, 0, 0, 0);
 				break;
 		}
-		updateLog("<html><p>Nivel 1</p><p>Ha aparecido un " + enemigo.getNombre() + "</p></html>");
-		// log.setText("<html><p>Nivel 1</p><p>Ha aparecido un " + enemigo.getNombre() + "</p></html>");
+		// TODO: aqui va la creacion del item que aparece en ese nivel
+		// itemCaido == algo; sugerencia con switch;
 
 	}
 
 	private void updateLog(String line)
 	{
-		logNivel = logNivel + "<p>" + line + "</p>";
+		logNivel = "<p>" + line + "</p>" + logNivel;
 		log.setText("<html>" + logNivel + "</html>");
 	}
 
@@ -241,7 +242,22 @@ public class MainWindow extends JFrame
 			}
 			else
 			{
-				// heroe.atacar("")
+				// TODO: aqui va el while
+				updateLog("Ha aparecido un " + enemigo.getNombre());
+				updateLog(heroe.atacar(enemigo, inventario));
+				updateLog(enemigo.atacar(heroe));
+				updateInfo();
+				// Cuando termina el while
+				// TODO: recoger el itemCaido que se creo;
+
+				arriba.setText("arriba");
+				arriba.setActionCommand("U");
+				abajo.setText("abajo");
+				abajo.setActionCommand("D");
+				izq.setText("<");
+				izq.setActionCommand("L");
+				derecha.setText(">");
+				derecha.setActionCommand("R");
 			}
 		}
 	}
@@ -252,7 +268,7 @@ public class MainWindow extends JFrame
 		{
 			if (event.getActionCommand().equals("P"))
 			{
-
+				// TODO: modificar la salud del heroe;
 			}
 		}
 	}

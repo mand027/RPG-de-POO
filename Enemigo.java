@@ -1,4 +1,4 @@
-public class Enemigo
+public abstract class Enemigo
 {
 	private int vida, defensa, danio, nivel;
 	private String nombre;
@@ -39,13 +39,9 @@ public class Enemigo
 	public String getNombre(){ return nombre; }
 	public void setNombre(String nombre){ this.nombre = nombre; }
 
-	public void atacar(){
+	public abstract String atacar(Heroe heroe);
 
-	}
-
-	public void xpDada(){
-
-	}
+	public abstract String xpDada(Heroe heroe);
 
 	public void itemTirado(){
 

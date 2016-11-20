@@ -15,26 +15,26 @@ public class Boss extends Enemigo
 	public int getIntel(){ return intel; }
 	public void setIntel(){ this.intel = intel; }
 
-	public String Atacar(Enemigo enemigo, Heroe heroe){
+	public String atacar(Heroe heroe){
 		String texto;
 
-		if(heroe.getVidaTemp() > enemigo.getVida()){
-			heroe.setVidaTemp(heroe.getVidaTemp() - (enemigo.getDanio()*4));
+		if(heroe.getVidaTemp() > getVida()){
+			heroe.setVidaTemp(heroe.getVidaTemp() - (getDanio()*4));
 			texto = "Te ha atacado el Boss con su ataque supremo";
 		}
 		else{
-			heroe.setVidaTemp(heroe.getVidaTemp() + heroe.getDefensa() - enemigo.getDanio());
+			heroe.setVidaTemp(heroe.getVidaTemp() + heroe.getDefensa() - getDanio());
 		}
 		texto = "Te ha atacado el Boss";
 		return texto;
 	}
 
-	public String xpDada(Heroe heroe, Enemigo enemigo){
+	public String xpDada(Heroe heroe){
 		String texto = "";
 
-		if(enemigo.getVida() <= 0){
-			heroe.setExp(heroe.getExp() + 100*enemigo.getNivel());
-			int xp = heroe.getExp() + 100*enemigo.getNivel();
+		if(getVida() <= 0){
+			heroe.setExp(heroe.getExp() + 100*getNivel());
+			int xp = heroe.getExp() + 100*getNivel();
 			texto = "Has matado al Boss! te da "+xp+" puntos de experiencia";
 		}
 		return texto;
