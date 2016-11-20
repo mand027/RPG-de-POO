@@ -91,8 +91,9 @@ public class MainWindow extends JFrame
 		izq  = new JButton("   ");
 		derecha = new JButton("    ");
 		bottomLeft.add(atacar);
+		JLabel empty = new JLabel("");
+		bottomLeft.add(empty);
 		bottomLeft.add(usar);
-		bottomLeft.add(recoger);
 		JLabel emptyBL1 = new JLabel("");
 		bottomLeft.add(emptyBL1);
 		bottomLeft.add(arriba);
