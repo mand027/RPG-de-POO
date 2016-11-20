@@ -118,20 +118,15 @@ public class MainWindow extends JFrame
 		for(int x=0; x < 5; x++){
 			for(int y=0; y < 20 ; y++){
 				JPanel panel = new JPanel();
-				// JButton casillaMapa = new JButton("");
 				if (x == 0 && y == 0)
 				{
-					// casillaMapa.setText("");
 					panel.setBackground(Color.red);
 				}
 				else
 				{
-					// casillaMapa.setText("");
 					panel.setBackground(Color.green);
 				}
 				panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-				// label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-				// panel.add(casillaMapa);
 				topRight.add(panel);
 			}
 		}
