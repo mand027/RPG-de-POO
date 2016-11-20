@@ -7,11 +7,13 @@ public class MainWindow extends JFrame
 {
 	// private String nombreHeroe;
 	// private String tipoHeroe;
+	private String logNivel;
 	private Heroe heroe;
+	private Enemigo enemigo;
 	private Inventario inventario;
 	private JPanel topLeft, topRight, bottomLeft, bottomRight;
-	private JButton atacar, usar, recoger, arriba, abajo, izq, derecha;
-	private JLabel nombre, clase, vida, nivel, experiencia, defensa, danio, intel, sigilo, municion, armaPrincipal, armaSecundaria, log;
+	private JButton atacar, usar, arriba, abajo, izq, derecha;
+	private JLabel nombre, clase, vida, nivel, experiencia, defensa, danio, intel, sigilo, armaPrincipal, armaSecundaria, pocionSalud, log;
 
 	public MainWindow(String nombreHeroe, String tipoHeroe)
 	{
@@ -48,44 +50,40 @@ public class MainWindow extends JFrame
 		add(bottomLeft);
 		add(bottomRight);
 
-		nombre = new JLabel("Nombre: " + heroe.getNombre());
+		//Info
+		nombre = new JLabel("");
 		bottomRight.add(nombre);
-		clase = new JLabel("Clase: " + heroe.getClase());
+		clase = new JLabel("");
 		bottomRight.add(clase);
-		nivel = new JLabel("Nivel: " + heroe.getNivel());
+		nivel = new JLabel("");
 		bottomRight.add(nivel);
-		experiencia = new JLabel("Exp: " + heroe.getExp());
+		experiencia = new JLabel("");
 		bottomRight.add(experiencia);
-		vida = new JLabel("Vida: " + heroe.getVidaTemp());
+		vida = new JLabel("");
 		bottomRight.add(vida);
-		defensa = new JLabel("Defensa: " + heroe.getDefensa());
+		defensa = new JLabel("");
 		bottomRight.add(defensa);
-		danio = new JLabel("Danio: " + heroe.getDanio());
+		danio = new JLabel("");
 		bottomRight.add(danio);
-		intel = new JLabel("Inteligencia: " + heroe.getIntel());
+		intel = new JLabel("");
 		bottomRight.add(intel);
 		if(heroe.getClase().equals("Spec Ops"))
 		{
-			sigilo = new JLabel("Sigilo: " + ((Specops)heroe).getSigilo());
+			sigilo = new JLabel("");
 			bottomRight.add(sigilo);
 		}
-		municion = new JLabel("Municion: " + ((Municion)inventario.getItems()[3]).getNumero());
-		bottomRight.add(municion);
-		armaPrincipal = new JLabel("A1: " + inventario.getItems()[0].getNombre());
+		armaPrincipal = new JLabel("");
 		bottomRight.add(armaPrincipal);
-		armaSecundaria = new JLabel("A2: " + inventario.getItems()[1].getNombre());
+		armaSecundaria = new JLabel("");
 		bottomRight.add(armaSecundaria);
-		// inventario = new JLabel(Inventario);
-		// bottomLeft.add(inventario);
-		log = new JLabel("*HISTORIA* INTRODUCCION");
-		topLeft.add(log);
+		pocionSalud = new JLabel("");
+		bottomRight.add(pocionSalud);
 
 		// Botones
 		atacar = new JButton("Entrar");
 		atacar.setActionCommand("E");
 		atacar.addActionListener(new AtacarListener());
 		usar = new JButton("    ");
-		recoger = new JButton("    ");
 		arriba = new JButton("    ");
 		arriba.addActionListener(new MoverListener());
 		arriba.setActionCommand("U");
@@ -117,14 +115,17 @@ public class MainWindow extends JFrame
 		JLabel emptyBL5 = new JLabel("");
 		bottomLeft.add(emptyBL5);
 
-		//Mapa
-		limpiarMapa();
+		//Intro
+		log = new JLabel("*HISTORIA* INTRODUCCION");
+		topLeft.add(log);
 
 	}
 
 	public void limpiarMapa(){
 		topRight.removeAll();
-		log.setText("Nuevo nivel" + heroe.getX() + " , " + heroe.getY());
+		logNivel = "";
+		int casillaActual = (heroe.getX() + 1 ) + (heroe.getY() * 5);
+		log.setText("Casilla: " + casillaActual);
 		for(int y=0; y < 20; y++){
 			for(int x=0; x < 5 ; x++){
 				JPanel panel = new JPanel();
@@ -142,13 +143,30 @@ public class MainWindow extends JFrame
 		}
 	}
 
+	public void updateInfo()
+	{
+		nombre.setText("Nombre: " + heroe.getNombre());
+		clase.setText("Clase: " + heroe.getClase());
+		nivel.setText("Nivel: " + heroe.getNivel());
+		experiencia.setText("Exp: " + heroe.getExp());
+		vida.setText("Vida: " + heroe.getVidaTemp());
+		defensa.setText("Defensa: " + heroe.getDefensa());
+		danio.setText("Danio: " + heroe.getDanio());
+		intel.setText("Inteligencia: " + heroe.getIntel());
+		if(heroe.getClase().equals("Spec Ops"))
+		{
+			sigilo.setText("Sigilo: " + ((Specops)heroe).getSigilo());
+		}
+		armaPrincipal.setText("A1: " + inventario.getItems()[0].getNombre() + "  Municion: " + ((Municion)inventario.getItems()[3]).getNumero());
+		armaSecundaria.setText("A2: " + inventario.getItems()[1].getNombre());
+		pocionSalud.setText("Pocion de Salud: " + ((Salud)inventario.getItems()[2]).getCura());
+	}
+
 	private void runLevel()
 	{
 		Random r = new Random();
-		Enemigo enemigo;
 		atacar.setText("Atacar");
 		usar.setText("Usar");
-		recoger.setText("");
 		arriba.setText("");
 		abajo.setText("");
 		izq.setText("");
@@ -188,8 +206,19 @@ public class MainWindow extends JFrame
 				enemigo = new Enemigo("no", 0, 0, 0, 0);
 				break;
 		}
-		log.setText("<html><p>Nivel 1</p><p>Ha aparecido un " + enemigo.getNombre() + "</p></html>");
+		// log.setText("<html><p>Nivel 1</p><p>Ha aparecido un " + enemigo.getNombre() + "</p></html>");
 
+	}
+
+	private void updateLog(String line)
+	{
+		logNivel = logNivel + "<p>" + line + "</p>";
+		log.setText("<html>" + logNivel + "</html>");
+	}
+
+	private void resetLog()
+	{
+		logNivel = "";
 	}
 
 	private class AtacarListener implements ActionListener
@@ -198,7 +227,14 @@ public class MainWindow extends JFrame
 		{
 			if (event.getActionCommand().equals("E"))
 			{
+				//Mapa
+				limpiarMapa();
+				updateInfo();
 				runLevel();
+			}
+			else
+			{
+
 			}
 		}
 	}
@@ -228,6 +264,7 @@ public class MainWindow extends JFrame
 						break;
 				}
 				limpiarMapa();
+				runLevel();
 			}
 			catch (SaliodelMapaException e)
 			{
