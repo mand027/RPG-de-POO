@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Random;
+import java.io.*;
 
 public class MainWindow extends JFrame
 {
@@ -16,19 +17,27 @@ public class MainWindow extends JFrame
 	private JButton atacar, usar, arriba, abajo, izq, derecha;
 	private JLabel nombre, clase, vida, nivel, experiencia, defensa, danio, intel, sigilo, armaPrincipal, armaSecundaria, pocionSalud, log;
 
-	public MainWindow(String nombreHeroe, String tipoHeroe)
+	public MainWindow(String nombreHeroe, String tipoHeroe, boolean isNew)
 	{
-		switch (tipoHeroe)
+		if (isNew)
 		{
-			case "Spec Ops":
-				this.heroe = new Specops(nombreHeroe, tipoHeroe, 1, 0, 100, 1, 10, 2, 1);
-				break;
-			case "Techno":
-				this.heroe = new Techno(nombreHeroe, tipoHeroe, 1, 0, 90, 0, 5, 6);
-				break;
-			case "Veteran":
-				this.heroe = new Veteran(nombreHeroe, tipoHeroe, 1, 0, 130, 2, 15, 0);
-				break;
+			switch (tipoHeroe)
+			{
+				case "Spec Ops":
+					this.heroe = new Specops(nombreHeroe, tipoHeroe, 1, 0, 100, 1, 10, 2, 1);
+					break;
+				case "Techno":
+					this.heroe = new Techno(nombreHeroe, tipoHeroe, 1, 0, 90, 0, 5, 6);
+					break;
+				case "Veteran":
+					this.heroe = new Veteran(nombreHeroe, tipoHeroe, 1, 0, 130, 2, 15, 0);
+					break;
+			}
+		}
+		else
+		{
+
+			deserializeHeroe();// crear heroe con file
 		}
 		inventario = new Inventario(new ArmaPrincipal("Rifle Termico"), new ArmaSecundaria("Cuchillo"), new Salud(0), new Municion(50));
 		setTitle("Horizons 1336");
@@ -36,6 +45,10 @@ public class MainWindow extends JFrame
 		setLayout(new GridLayout(2, 2));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		init();
+		if (!isNew)
+		{
+			atacar.doClick();
+		}
 		setVisible(true);
 		//run();
 	}
@@ -121,6 +134,67 @@ public class MainWindow extends JFrame
 		log = new JLabel("*HISTORIA* INTRODUCCION");
 		topLeft.add(log);
 
+	}
+
+	public void serializeHeroe(Heroe heroe, int x, int y)
+	{
+		SaveObject saveObject;
+		if (heroe.getClase().equals("Spec Ops"))
+		{
+			saveObject = new SaveObject(heroe.getNombre(), heroe.getClase(), heroe.getNivel(), heroe.getExp(),
+			 							heroe.getVidaMax(), heroe.getVidaTemp(), heroe.getDefensa(), heroe.getDanio(), heroe.getIntel(), ((Specops)heroe).getSigilo(), x, y);
+		}
+		else
+		{
+			saveObject = new SaveObject(heroe.getNombre(), heroe.getClase(), heroe.getNivel(), heroe.getExp(),
+			 							heroe.getVidaMax(), heroe.getVidaTemp(), heroe.getDefensa(), heroe.getDanio(), heroe.getIntel(), 0, x, y);
+		}
+		try
+		{
+			FileOutputStream fout = new FileOutputStream("./saveFile.hor");
+			ObjectOutputStream oos = new ObjectOutputStream(fout);
+			oos.writeObject(saveObject);
+			oos.close();
+			updateLog("Juego guardado...");
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+	public void deserializeHeroe()
+	{
+		SaveObject saveObject;
+		try
+		{
+			FileInputStream fin = new FileInputStream("./saveFile.hor");
+			ObjectInputStream ois = new ObjectInputStream(fin);
+			saveObject = (SaveObject) ois.readObject();
+			ois.close();
+			switch (saveObject.getClase())
+			{
+				case "Spec Ops":
+					this.heroe = new Specops(saveObject.getNombre(), saveObject.getClase(), saveObject.getNivel(), saveObject.getExp(),
+					 							saveObject.getVidaMax(), saveObject.getDefensa(), saveObject.getDanio(), saveObject.getIntel(), saveObject.getSigilo());
+					break;
+				case "Techno":
+					this.heroe = new Techno(saveObject.getNombre(), saveObject.getClase(), saveObject.getNivel(), saveObject.getExp(),
+					 							saveObject.getVidaMax(), saveObject.getDefensa(), saveObject.getDanio(), saveObject.getIntel());
+					break;
+				case "Veteran":
+					this.heroe = new Veteran(saveObject.getNombre(), saveObject.getClase(), saveObject.getNivel(), saveObject.getExp(),
+					 							saveObject.getVidaMax(), saveObject.getDefensa(), saveObject.getDanio(), saveObject.getIntel());
+					break;
+			}
+			heroe.setVidaTemp(saveObject.getVidaTemp());
+			heroe.setX(saveObject.getX());
+			heroe.setY(saveObject.getY());
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 	public void limpiarMapa(){
@@ -314,6 +388,8 @@ public class MainWindow extends JFrame
 				}
 				limpiarMapa();
 				runLevel();
+				serializeHeroe(heroe, heroe.getX(), heroe.getY());
+				System.out.println("Saved game.");
 			}
 			catch (SaliodelMapaException e)
 			{

@@ -52,7 +52,7 @@ public class InitialWindow extends JFrame
             else
             {
                 setVisible(false);
-                new MainWindow(nombreTF.getText(), event.getActionCommand());
+                new MainWindow(nombreTF.getText(), event.getActionCommand(), true);
             }
         }
     }
