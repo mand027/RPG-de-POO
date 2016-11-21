@@ -242,11 +242,22 @@ public class MainWindow extends JFrame
 			}
 			else
 			{
-				// TODO: aqui va el while
 				updateLog("Ha aparecido un " + enemigo.getNombre());
+				// TODO: aqui va el while
+				if(heroe.getVidaTemp()<0){
+					updateLog("Estas muerto");
+				}else{
+				while(enemigo.getVida()>0 && heroe.getVidaTemp()>0){
+				if(heroe.getVidaTemp()>0){
 				updateLog(heroe.atacar(enemigo, inventario));
+				}
+				if(enemigo.getVida()>0){
 				updateLog(enemigo.atacar(heroe));
+				}
 				updateInfo();
+				}
+			}
+
 				// Cuando termina el while
 				// TODO: recoger el itemCaido que se creo;
 
