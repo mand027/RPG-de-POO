@@ -4,12 +4,12 @@ public class Inventario
 	// salud, municionprincipal y municionsecundaria.
 	private Item[] items;
 
-	public Inventario(ArmaPrincipal armaPrincipal, ArmaSecundaria armaSecundaria, Salud salud, Municion municionPrincipal)
+	public Inventario(ArmaPrincipal armaPrincipal, ArmaSecundaria armaSecundaria, Pocion pocion, Municion municionPrincipal)
 	{
 		items = new Item[4];
 		items[0] = armaPrincipal;
 		items[1] = armaSecundaria;
-		items[2] = salud;
+		items[2] = pocion;
 		items[3] = municionPrincipal;
 	}
 
@@ -26,8 +26,12 @@ public class Inventario
 		items[index] = null;
 	}
 
-	public void usar(int index)
+	public void recogerPocion()
 	{
-
+		((Pocion)items[2]).setCantidad(((Pocion)items[2]).getCantidad() + 1);
+	}
+	public void usarPocion()
+	{
+		((Pocion)items[2]).setCantidad(((Pocion)items[2]).getCantidad() - 1);
 	}
 }

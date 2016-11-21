@@ -39,7 +39,7 @@ public class MainWindow extends JFrame
 
 			deserializeHeroe();// crear heroe con file
 		}
-		inventario = new Inventario(new ArmaPrincipal("Rifle Termico"), new ArmaSecundaria("Cuchillo"), new Salud(0), new Municion(50));
+		inventario = new Inventario(new ArmaPrincipal("Rifle Termico"), new ArmaSecundaria("Cuchillo"), new Pocion(), new Municion(50));
 		setTitle("Horizons 1336");
 		setSize(1280, 720);
 		setLayout(new GridLayout(2, 2));
@@ -235,7 +235,7 @@ public class MainWindow extends JFrame
 		}
 		armaPrincipal.setText("A1: " + inventario.getItems()[0].getNombre() + "  Municion: " + ((Municion)inventario.getItems()[3]).getNumero());
 		armaSecundaria.setText("A2: " + inventario.getItems()[1].getNombre());
-		pocionSalud.setText("Pocion de Salud: " + ((Salud)inventario.getItems()[2]).getCura());
+		pocionSalud.setText("#Pociones: " + ((Pocion)inventario.getItems()[2]).getCantidad());
 	}
 
 	private void runLevel()
@@ -253,39 +253,43 @@ public class MainWindow extends JFrame
 		izq.setActionCommand("none");
 		derecha.setText("");
 		derecha.setActionCommand("none");
-		// 	if (casilla100){
-		// 	enemigo > boss
-		// }
-		// else lo de abajo
-		switch (r.nextInt(12))
+		if (heroe.getX() == 4 && heroe.getY() == 19)
 		{
-			case 0:
-			case 1:
-			case 2:
-				enemigo = new Cartacus("Cartacus", heroe.getNivel()*50, 1, 10, heroe.getNivel());
-				break;
-			case 3:
-			case 4:
-			case 5:
-			case 6:
-				enemigo = new Nikanor("Nikanor", heroe.getNivel()*100, 0, 5, heroe.getNivel());
-				break;
-			case 7:
-				enemigo = new Zebulon("Zebulon", heroe.getNivel()*110, 2, 15, heroe.getNivel());
-				break;
-			case 8:
-			case 9:
-				enemigo = new Quiang("Quiang", heroe.getNivel()*150, 2, 7, heroe.getNivel());
-				break;
-			case 10:
-				enemigo = new Pertus("Pertus", heroe.getNivel()*75, 0, 20, heroe.getNivel());
-				break;
-			case 11:
-				// enemigo = new Enemigo("no", 0, 0, 0, 0);
-				break;
-			default:
-				// enemigo = new Enemigo("no", 0, 0, 0, 0);
-				break;
+			enemigo = new Boss("Boss", heroe.getNivel()*50, 1, 10, heroe.getNivel(), 0, 0);
+			// TODO: Cambiar stats del boss. nombre > vida > defensa > danio > nivel > sigilo > intel
+		}
+		else
+		{
+			switch (r.nextInt(12))
+			{
+				case 0:
+				case 1:
+				case 2:
+					enemigo = new Cartacus("Cartacus", heroe.getNivel()*50, 1, 10, heroe.getNivel());
+					break;
+				case 3:
+				case 4:
+				case 5:
+				case 6:
+					enemigo = new Nikanor("Nikanor", heroe.getNivel()*100, 0, 5, heroe.getNivel());
+					break;
+				case 7:
+					enemigo = new Zebulon("Zebulon", heroe.getNivel()*110, 2, 15, heroe.getNivel());
+					break;
+				case 8:
+				case 9:
+					enemigo = new Quiang("Quiang", heroe.getNivel()*150, 2, 7, heroe.getNivel());
+					break;
+				case 10:
+					enemigo = new Pertus("Pertus", heroe.getNivel()*75, 0, 20, heroe.getNivel());
+					break;
+				case 11:
+					// enemigo = new Enemigo("no", 0, 0, 0, 0);
+					break;
+				default:
+					// enemigo = new Enemigo("no", 0, 0, 0, 0);
+					break;
+			}
 		}
 		updateLog("Ha aparecido un " + enemigo.getNombre());
 		// TODO: aqui va la creacion del item que aparece en ese nivel
@@ -357,7 +361,13 @@ public class MainWindow extends JFrame
 		{
 			if (event.getActionCommand().equals("P"))
 			{
-				// TODO: modificar la salud del heroe;
+				// FIXME: pocion deberia de ser un contador
+				if (((Pocion)inventario.getItems()[2]).getCantidad() > 0)
+				{
+					heroe.setVidaTemp(heroe.getVidaMax());
+					inventario.usarPocion();
+				}
+				updateInfo();
 			}
 		}
 	}
