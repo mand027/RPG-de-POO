@@ -213,6 +213,7 @@ public class MainWindow extends JFrame
 				// enemigo = new Enemigo("no", 0, 0, 0, 0);
 				break;
 		}
+		updateLog("Ha aparecido un " + enemigo.getNombre());
 		// TODO: aqui va la creacion del item que aparece en ese nivel
 		// itemCaido == algo; sugerencia con switch;
 
@@ -224,9 +225,12 @@ public class MainWindow extends JFrame
 		log.setText("<html>" + logNivel + "</html>");
 	}
 
-	private void resetLog()
+	private void gameOver()
 	{
-		logNivel = "";
+		topRight.removeAll();
+		bottomLeft.removeAll();
+		bottomRight.removeAll();
+		log.setText("Haz muerto, Reinicia el juego");
 	}
 
 	private class AtacarListener implements ActionListener
@@ -242,21 +246,21 @@ public class MainWindow extends JFrame
 			}
 			else
 			{
-				updateLog("Ha aparecido un " + enemigo.getNombre());
 				// TODO: aqui va el while
-				if(heroe.getVidaTemp()<0){
-					updateLog("Estas muerto");
-				}else{
-				while(enemigo.getVida()>0 && heroe.getVidaTemp()>0){
-				if(heroe.getVidaTemp()>0){
-				updateLog(heroe.atacar(enemigo, inventario));
+				while (enemigo.getVida() > 0 && heroe.getVidaTemp() > 0)
+				{
+					updateLog(heroe.atacar(enemigo, inventario));
+					if (enemigo.getVida() > 0)
+					{
+						updateLog(enemigo.atacar(heroe));
+					}
+					else
+					{
+						updateLog("Derrostaste a: " + enemigo.getNombre());
+					}
+					if (heroe.getVidaTemp() <= 0){ gameOver(); }
+					updateInfo();
 				}
-				if(enemigo.getVida()>0){
-				updateLog(enemigo.atacar(heroe));
-				}
-				updateInfo();
-				}
-			}
 
 				// Cuando termina el while
 				// TODO: recoger el itemCaido que se creo;
