@@ -8,7 +8,7 @@ public class Quiang extends Enemigo
 	public String atacar(Heroe heroe){
 		String texto;
 
-		if(heroe.getVidaTemp() < heroe.getVidaMax()/3){
+		if(heroe.getVidaTemp() < heroe.getVidaMax()/6){
 			heroe.setVidaTemp(heroe.getVidaTemp() + heroe.getDefensa() - (getDanio()*2));
 			texto = "Te ha atacado un Quiang con embestida";
 		}

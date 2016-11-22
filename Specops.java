@@ -46,8 +46,9 @@ public class Specops extends Heroe{
 		if(getNivel()==20){
 			texto="ya eres nivel maximo";
 		}
-		if(getExp() == 100*getNivel() ){
+		if(getExp() >= 100*getNivel() ){
 			setVida(getVidaMax()+100);
+			setVidaTemp(getVidaMax());
 			setDanio(getDanio()+3);
 			setIntel(getIntel()+2);
 			sigilo = getSigilo()+3;

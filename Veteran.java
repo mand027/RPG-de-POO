@@ -23,8 +23,9 @@ public class Veteran extends Heroe{
 		if(getNivel()==20){
 			texto="ya eres nivel maximo";
 		}
-		if(getExp() == 100*getNivel() ){
+		if(getExp() >= 100*getNivel() ){
 			setVida(getVidaMax()+130);
+			setVidaTemp(getVidaMax());
 			setDanio(getDanio()+4);
 			setIntel(getIntel()+1);
 			setDefensa(getDefensa()+3);

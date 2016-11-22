@@ -24,13 +24,13 @@ public class MainWindow extends JFrame
 			switch (tipoHeroe)
 			{
 				case "Spec Ops":
-					this.heroe = new Specops(nombreHeroe, tipoHeroe, 1, 0, 150, 2, 15, 3, 1);
+					this.heroe = new Specops(nombreHeroe, tipoHeroe, 1, 0, 250, 2, 25, 3, 1);
 					break;
 				case "Techno":
-					this.heroe = new Techno(nombreHeroe, tipoHeroe, 1, 0, 140, 1, 10, 6);
+					this.heroe = new Techno(nombreHeroe, tipoHeroe, 1, 0, 200, 1, 20, 6);
 					break;
 				case "Veteran":
-					this.heroe = new Veteran(nombreHeroe, tipoHeroe, 1, 0, 180, 4, 20, 2);
+					this.heroe = new Veteran(nombreHeroe, tipoHeroe, 1, 0, 300, 4, 30, 2);
 					break;
 			}
 		}
@@ -367,6 +367,7 @@ public class MainWindow extends JFrame
 					}
 					else
 					{
+						updateLog(enemigo.xpDada(heroe));
 						updateLog("Derrostaste a: " + enemigo.getNombre());
 						updateLog(heroe.subirDeNivel());
 					}

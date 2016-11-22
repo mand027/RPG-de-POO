@@ -22,8 +22,9 @@ public class Techno extends Heroe{
 		if(getNivel()==20){
 			texto="ya eres nivel maximo";
 		}
-		if(getExp() == 100*getNivel() ){
+		if(getExp() >= 100*getNivel() ){
 			setVida(getVidaMax()+90);
+			setVidaTemp(getVidaMax());
 			setDanio(getDanio()+2);
 			setIntel(getIntel()+4);
 			setDefensa(getDefensa()+2);
