@@ -24,13 +24,13 @@ public class MainWindow extends JFrame
 			switch (tipoHeroe)
 			{
 				case "Spec Ops":
-					this.heroe = new Specops(nombreHeroe, tipoHeroe, 1, 0, 100, 1, 10, 2, 1);
+					this.heroe = new Specops(nombreHeroe, tipoHeroe, 1, 0, 150, 2, 15, 3, 1);
 					break;
 				case "Techno":
-					this.heroe = new Techno(nombreHeroe, tipoHeroe, 1, 0, 90, 0, 5, 6);
+					this.heroe = new Techno(nombreHeroe, tipoHeroe, 1, 0, 140, 1, 10, 6);
 					break;
 				case "Veteran":
-					this.heroe = new Veteran(nombreHeroe, tipoHeroe, 1, 0, 130, 2, 15, 0);
+					this.heroe = new Veteran(nombreHeroe, tipoHeroe, 1, 0, 180, 4, 20, 2);
 					break;
 			}
 		}
@@ -131,7 +131,7 @@ public class MainWindow extends JFrame
 		bottomLeft.add(emptyBL5);
 
 		//Intro
-		log = new JLabel("*HISTORIA* INTRODUCCION");
+		log = new JLabel("En el año 2136 la humanidad, después de haber colonizado el sistema Sol ha comenzado a expandir su imperio galáctico, cuando encuentran en el sistema estelar más cercano un planeta terrano llamado New Haven por los humanos. Éstos deciden enviar un pequeño escuadrón de reconocimiento pero al llegar se dieron cuenta que el planeta estaba habitado por una especie inteligente que estaba en una etapa tribal. Esta atacó al escuadrón dejando a solo un sobreviviente, este deberá luchar para llegar a la nave de evacuación que está resguardada por el rey guerrero de la tribu. Para lograrlo deberás mejorar tus habilidades y conseguir mejores armas que se pidieron como refuerzo durante la emboscada de la tribu nativa. Pero esa tribu no es el único peligro, el planeta está habitado por formas de vida hostiles que no dudaran en atacar.");
 		topLeft.add(log);
 
 	}
@@ -255,7 +255,7 @@ public class MainWindow extends JFrame
 		derecha.setActionCommand("none");
 		if (heroe.getX() == 4 && heroe.getY() == 19)
 		{
-			enemigo = new Boss("Boss", heroe.getNivel()*50, 1, 10, heroe.getNivel(), 0, 0);
+			enemigo = new Boss("Boss", 1+heroe.getNivel()*50, 1, 10, heroe.getNivel()+1, 0, 0);
 			// TODO: Cambiar stats del boss. nombre > vida > defensa > danio > nivel > sigilo > intel
 		}
 		else
@@ -292,9 +292,42 @@ public class MainWindow extends JFrame
 			}
 		}
 		updateLog("Ha aparecido un " + enemigo.getNombre());
-		// TODO: aqui va la creacion del item que aparece en ese nivel
-		// itemCaido == algo; sugerencia con switch;
 
+		// Principales
+		if(heroe.getX() == 2 && heroe.getY() == 3){
+			if( inventario.getItems()[0].getNombre().equals("Rifle de Antimateria") ){
+				log.setText("encontraste el rifle de plasma pero al tener el de antimateria lo ignoras");
+			}
+			else{
+				((ArmaPrincipal)inventario.getItems()[0]).setDanio(6);
+				inventario.getItems()[0].setNombre("Rifle de Plasma");
+				log.setText("Has encontrado el rifle de plasma, se equipa automaticamente");
+			}
+		}
+
+		if(heroe.getX() == 4 && heroe.getY() == 17){
+			((ArmaPrincipal)inventario.getItems()[0]).setDanio(12);
+			inventario.getItems()[0].setNombre("Rifle de Antimateria");
+			log.setText("Has encontrado el Rifle de Antimateria, se equipa automaticamente");
+		}
+
+		//Secundarias
+		if(heroe.getX() == 1 && heroe.getY() == 10){
+			if( inventario.getItems()[1].getNombre().equals("Sable Tribal") ){
+				log.setText("encontraste el Cuchillo Calorico pero al tener el Sable Tribal lo ignoras");
+			}
+			else{
+				((ArmaSecundaria)inventario.getItems()[1]).setDanio(3);
+				inventario.getItems()[1].setNombre("Cuchillo Calorico");
+				log.setText("Has encontrado el Cuchillo Calorico, se equipa automaticamente");
+			}
+		}
+
+		if(heroe.getX() == 3 && heroe.getY() == 18){
+			((ArmaPrincipal)inventario.getItems()[1]).setDanio(7);
+			inventario.getItems()[1].setNombre("Sable Tribal");
+			log.setText("Has encontrado el Sable Tribal, se equipa automaticamente");
+		}
 	}
 
 	private void updateLog(String line)
@@ -335,6 +368,7 @@ public class MainWindow extends JFrame
 					else
 					{
 						updateLog("Derrostaste a: " + enemigo.getNombre());
+						updateLog(heroe.subirDeNivel());
 					}
 					if (heroe.getVidaTemp() <= 0){ gameOver(); }
 					updateInfo();

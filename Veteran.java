@@ -18,4 +18,21 @@ public class Veteran extends Heroe{
 
 		return texto;
 	}
+
+	public String subirDeNivel(){
+		if(getNivel()==20){
+			texto="ya eres nivel maximo";
+		}
+		if(getExp() == 100*getNivel() ){
+			setVida(getVidaMax()+130);
+			setDanio(getDanio()+4);
+			setIntel(getIntel()+1);
+			setDefensa(getDefensa()+3);
+			setNivel(getNivel()+1);
+
+			texto = "Felicidades, ahore eres nivel "+getNivel();
+		}
+
+		return texto;
+	}
 }

@@ -4,6 +4,7 @@ public class ArmaPrincipal extends Item
 
 	public ArmaPrincipal(String nombre){
 		super(nombre);
+		this.danio = danio;
 	}
 
 	public int getDanio(){

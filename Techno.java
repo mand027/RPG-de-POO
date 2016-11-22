@@ -17,4 +17,21 @@ public class Techno extends Heroe{
 		texto = "has atacado a "+enemigo.getNombre()+" con tu "+inventario.getItems()[1].getNombre();
 		return texto;
 	}
+
+	public String subirDeNivel(){
+		if(getNivel()==20){
+			texto="ya eres nivel maximo";
+		}
+		if(getExp() == 100*getNivel() ){
+			setVida(getVidaMax()+90);
+			setDanio(getDanio()+2);
+			setIntel(getIntel()+4);
+			setDefensa(getDefensa()+2);
+			setNivel(getNivel()+1);
+
+			texto = "Felicidades, ahore eres nivel "+getNivel();
+		}
+
+		return texto;
+	}
 }
