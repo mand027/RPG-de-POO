@@ -117,7 +117,8 @@ public abstract class Heroe implements Movimiento
         }
     }
 
-    public void levelup(){
-		      nivel++;
+    public String subirDeNivel(){
+		String texto = "";
+		return texto;
     }
 }

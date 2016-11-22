@@ -41,4 +41,22 @@ public class Specops extends Heroe{
 	public void setSigilo(){
 		this.sigilo = sigilo;
 	}
+
+	public String subirDeNivel(){
+		if(getNivel()==20){
+			texto="ya eres nivel maximo";
+		}
+		if(getExp() == 100*getNivel() ){
+			setVida(getVidaMax()+100);
+			setDanio(getDanio()+3);
+			setIntel(getIntel()+2);
+			sigilo = getSigilo()+3;
+			setDefensa(getDefensa()+1);
+			setNivel(getNivel()+1);
+
+			texto = "Felicidades, ahore eres nivel "+getNivel();
+		}
+
+		return texto;
+	}
 }
